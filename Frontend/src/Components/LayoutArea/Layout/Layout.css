@@ -1,0 +1,19 @@
+.Layout {
+    height: 100%;
+    display: grid;
+    grid-template-rows: 10% 85% 5%;
+    grid-template-columns: repeat(6, 1fr);
+    box-sizing: border-box;
+}
+
+.Layout>header,
+.Layout>footer {
+    grid-column: span 6;
+}
+
+.Layout>main {
+    grid-column: span 6;
+    overflow: auto;
+    background-image: url(../../../Assets/test.jpg);
+    background-size: cover;
+}

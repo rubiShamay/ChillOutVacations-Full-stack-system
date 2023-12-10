@@ -1,0 +1,53 @@
+.Home {
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.Home>.authButton {
+    height: 10vh;
+    margin-top: 3%;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    width: 30%;
+    margin-inline-start: auto;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
+.containerPage {
+    height: 50vh;
+    display: flex;
+    margin-left: 3%;
+    margin-right: 3%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 5%;
+}
+
+.cardPage {
+    width: 30%;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 49vh;
+    background: white;
+    opacity: 80%;
+    /* transition: opacity 1s ease-in-out; */
+    /* animation: fadeIn; */
+}
+
+/* @keyframes fadeIn {
+    from {
+        opacity: 0%;
+        
+    }
+    to {
+        opacity: 80%;
+       
+    }
+} */
+.cardPage>p {
+    margin-left: 2%;
+    margin-left: 2%;
+}

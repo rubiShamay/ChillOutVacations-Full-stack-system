@@ -1,0 +1,32 @@
+.UpdateVacation > form {
+	width: 250px;
+    border: 1px solid;
+    text-align: left;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 10px 10px 10px;
+    border-radius: 10px;
+    background-color: black;
+    opacity: 65%;
+    color: white;
+}
+.UpdateVacation  > form > input , 
+.UpdateVacation > form > button,
+.UpdateVacation > form > textarea{
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: none;
+    color:black;
+}
+.imagePlace{
+    height: 150px;
+    width: 100%;
+    border: 1px solid gainsboro;
+    border-radius: 10px;
+}
+.imagePlace > img {
+    height: 100%;
+    width: 100%;
+}

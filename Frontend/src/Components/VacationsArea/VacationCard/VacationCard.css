@@ -1,0 +1,49 @@
+.headersCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 13px;
+    align-items: center;
+}
+.adminBtn{
+    margin-left: 1%;
+    margin-top: 3%;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+}
+.des {
+    font-size: 13px;
+    padding: 1%;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.bgCard {
+    width: 75%;
+    border-radius: 10px;
+    height: 30%;
+}
+
+.Card {
+    padding: 5%;
+    margin-block-end: 14%;
+}
+
+.css-1v5z4dq-MuiPaper-root-MuiCard-root {
+    height: 150%;
+}
+.dates{
+    margin: 0;
+}
+.titleCard{
+    font-weight: bold;
+}
+.footerCard {
+    display: flex;
+    align-content: flex-end;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 42%;
+}
