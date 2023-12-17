@@ -4,7 +4,7 @@ import UserModel from "../3-models/user-model";
 import jwt from "jsonwebtoken"
 class Cyber {
 
-    private secretKey = "The-Amazing-Students-Of-Yos-Israel";
+    private secretKey = "My-First-FullStack-Project-In-React-NodeJS";
 
     public getNewToken(user: UserModel): string {
 

@@ -8,10 +8,10 @@ import { Unauthorized, Validation } from "../3-models/error-models";
 
 class AuthService {
 
-    private async getExistingEmail(email:string): Promise<UserModel[]>{
+    private async getExistingEmail(email: string): Promise<UserModel[]> {
         const checkSql = `SELECT * FROM users`;
 
-        const users:UserModel[] = await dal.execute(checkSql)
+        const users: UserModel[] = await dal.execute(checkSql)
 
         const takenUser = users.filter(u => u.email === email)
 
@@ -21,22 +21,21 @@ class AuthService {
     public async register(user: UserModel): Promise<any> {
         // Validate :
         user.validate()
-        
-        // Is user name taken :
+
+        // If user name taken :
         const checkUser = await this.getExistingEmail(user.email)
 
         // return takenUser and throw error :
-        if (checkUser.length >= 1 ) throw new Validation("User Is Taken")
+        if (checkUser.length >= 1) throw new Validation("User Is Taken")
 
-        // Declare user as regular user
+        // Declare user as regular user :
         user.role = RoleModel.User;
 
         // create sql
-        const sql = `INSERT INTO users(firstName ,lastName , email , password , role)
-        VALUES('${user.firstName}','${user.lastName}','${user.email}','${user.password}',${user.role})`;
+        const sql = `INSERT INTO users VALUES(DEFAULT , ? , ? , ? , ? , ?)`;
 
         // Save user
-        const info: OkPacket = await dal.execute(sql);
+        const info: OkPacket = await dal.execute(sql, [user.firstName, user.lastName, user.email, user.password, user.role]);
 
         // set user id 
         user.id = info.insertId;
@@ -55,10 +54,10 @@ class AuthService {
         credentials.credentialsValidate()
 
         // Create sql
-        const sql = `SELECT * FROM users WHERE email = '${credentials.email}' AND password = '${credentials.password}'`
+        const sql = `SELECT * FROM users WHERE email = ? AND password = ?`
 
         // Save user
-        const users = await dal.execute(sql);
+        const users = await dal.execute(sql , [credentials.email , credentials.password]);
 
         const user = users[0];
 

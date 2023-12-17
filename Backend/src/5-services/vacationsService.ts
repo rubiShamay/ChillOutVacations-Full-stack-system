@@ -21,7 +21,7 @@ class VacationService {
                 DATE_FORMAT(v.endDate, "%Y-%m-%d") as endDate ,
                 v.price,
                 CONCAT('${appConfig.appHost}' , '/api/vacations/' ,v.ImageName) as imageUrl,
-    	EXISTS(SELECT * FROM followers r WHERE r.vacationsID = F.vacationsID AND r.userID = ${id}) AS isFollowing,
+    	EXISTS(SELECT * FROM followers r WHERE r.vacationsID = F.vacationsID AND r.userID = ?) AS isFollowing,
             COUNT(F.userID) AS followersCount
         FROM vacations as V LEFT JOIN followers as F
         ON V.id = F.vacationsID
@@ -29,7 +29,7 @@ class VacationService {
         ORDER BY startDate`;
 
         // Get vacations from database
-        const vacations = await dal.execute(sql)
+        const vacations = await dal.execute(sql, [id])
 
         if (!vacations) throw new ResourceNotFound(id)
 
@@ -50,10 +50,10 @@ class VacationService {
             price,
             CONCAT('${appConfig.appHost}' , '/api/vacations/' ,ImageName) as imageUrl
         FROM vacations
-        WHERE id = ${id}`;
+        WHERE id = ?`;
 
         // Get vacations from database
-        const vacations = await dal.execute(sql)
+        const vacations = await dal.execute(sql , [id])
         // Extract that vacation to single object
         const vacation = vacations[0]
 
@@ -72,23 +72,18 @@ class VacationService {
 
         // SQL create SQL insert query
         const sql = `
-        INSERT INTO vacations
-        (   name,
-            description,
-            startDate,
-            endDate,
-            price,
-            ImageName
-        )VALUES(
-            '${vacation.name}',
-            '${vacation.description}' ,
-            '${vacation.startDate}' , 
-            '${vacation.endDate}' , 
-            ${vacation.price} , 
-            '${imageName}')`;
+        INSERT INTO vacations(name,description,startDate,endDate,price,ImageName)
+        VALUES(? , ? , ? , ? , ? , ?)`;
 
         // Add vacation to database
-        const info: OkPacket = await dal.execute(sql);
+        const info: OkPacket = await dal.execute(sql , [
+            vacation.name,
+            vacation.description,
+            vacation.startDate,
+            vacation.endDate,
+            vacation.price,
+            imageName
+        ]);
 
         // Delete image from model : 
         delete vacation.image;
@@ -121,16 +116,24 @@ class VacationService {
         // SQL create SQL insert query
         const sql = `
         UPDATE vacations SET 
-            name  = '${vacation.name}' , 
-            description  = '${vacation.description}' , 
-            startDate  = '${vacation.startDate}' , 
-            endDate  = '${vacation.endDate}' , 
-            price  = ${vacation.price} , 
-            ImageName  = '${imageName}' 
-        WHERE id = ${vacation.id}`;
+            name  = ? , 
+            description  = ? , 
+            startDate  = ? , 
+            endDate  = ? , 
+            price  = ? , 
+            ImageName  = ? 
+        WHERE id = ?`;
 
         // Add vacation to database
-        const info: OkPacket = await dal.execute(sql);
+        const info: OkPacket = await dal.execute(sql ,[
+            vacation.name,
+            vacation.description,
+            vacation.startDate,
+            vacation.endDate,
+            vacation.price,
+            imageName,
+            vacation.id
+        ]);
 
         // if id not found
         if (info.affectedRows === 0) throw new ResourceNotFound(vacation.id);
@@ -147,8 +150,8 @@ class VacationService {
 
     // Get image name by vacation id:
     private async getExistingImageName(id: number): Promise<string> {
-        const sql = `SELECT ImageName FROM vacations WHERE id = ${id}`
-        const vacations = await dal.execute(sql)
+        const sql = `SELECT ImageName FROM vacations WHERE id = ?`
+        const vacations = await dal.execute(sql, [id])
         const vacation = vacations[0];
         if (!vacation) return "";
         return vacation.ImageName;
@@ -156,8 +159,8 @@ class VacationService {
 
     // Get check if there vacation for update image :
     private async getExistingVacation(id: number): Promise<string> {
-        const sql = `SELECT id FROM vacations WHERE id = ${id}`
-        const vacations = await dal.execute(sql)
+        const sql = `SELECT id FROM vacations WHERE id = ?`
+        const vacations = await dal.execute(sql , [id])
         const vacation = vacations[0];
         if (!vacation) return "";
         return vacation.id;
@@ -169,10 +172,10 @@ class VacationService {
         const existingImageName = await this.getExistingImageName(id);
 
         // SQL create SQL insert query
-        const sql = `DELETE FROM vacations WHERE id = ${id}`;
+        const sql = `DELETE FROM vacations WHERE id = ?`;
 
         // Add vacation to database
-        const info: OkPacket = await dal.execute(sql);
+        const info: OkPacket = await dal.execute(sql , [id]);
 
         // Delete image from disk
         await fileSaver.delete(existingImageName)

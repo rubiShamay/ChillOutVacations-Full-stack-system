@@ -53,7 +53,7 @@ function UpdateVacation(): JSX.Element {
             vacation.id = id
             vacation.image = (vacation.image as unknown as FileList)[0]
             const beVacation = await vacationsService.updateVacation(vacation)
-            notificationService.success(`Vacation ${id} has been update`)
+            notificationService.success(`Vacation ${beVacation.id} has been update`)
             navigate(appConfig.vacationsRoute)
         }
         catch (err: any) { notificationService.error(err) }

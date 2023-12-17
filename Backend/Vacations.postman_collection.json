@@ -1,13 +1,13 @@
 {
 	"info": {
-		"_postman_id": "99f15c98-3f55-4f83-aa60-b14c736186bb",
-		"name": "test",
+		"_postman_id": "b700ad9e-ecc1-4370-91c2-f3538d4cb1af",
+		"name": "Vacations",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "30129956"
 	},
 	"item": [
 		{
-			"name": "Auth - vac",
+			"name": "Auth",
 			"item": [
 				{
 					"name": "Login",
@@ -19,7 +19,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "rubi@gmail.com",
+									"value": "kakaroto@gmail.com",
 									"type": "text"
 								},
 								{
@@ -92,30 +92,10 @@
 			]
 		},
 		{
-			"name": "vacations",
+			"name": "Vacations",
 			"item": [
 				{
-					"name": "getAllVacations",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:4000/api/vacations",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "4000",
-							"path": [
-								"api",
-								"vacations"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getOneVacation",
+					"name": "get All Vacations",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -134,7 +114,34 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "15"
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get One Vacation",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/vacations/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"vacations",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "29"
 								}
 							]
 						}
@@ -161,7 +168,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "24"
+									"value": "21"
 								}
 							]
 						}
@@ -169,7 +176,7 @@
 					"response": []
 				},
 				{
-					"name": "addVacation",
+					"name": "add Vacation",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -177,7 +184,7 @@
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "destination",
+									"key": "name",
 									"value": "israela",
 									"type": "text"
 								},
@@ -204,12 +211,12 @@
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/rubi9/OneDrive/תמונות/Camera/red-apple.webp"
+									"src": "/C:/Users/rubi9/OneDrive/תמונות/Camera/grap.jpeg"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/vacations",
+							"raw": "http://localhost:4000/api/vacations/addVacation",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -217,7 +224,8 @@
 							"port": "4000",
 							"path": [
 								"api",
-								"vacations"
+								"vacations",
+								"addVacation"
 							]
 						}
 					},
@@ -232,39 +240,39 @@
 							"mode": "formdata",
 							"formdata": [
 								{
-									"key": "destination",
-									"value": "Bali",
+									"key": "name",
+									"value": "Isreal",
 									"type": "text"
 								},
 								{
 									"key": "description",
-									"value": "Enjoy the beautiful beaches, lush rice terraces, and vibrant culture of Bali. Its a perfect destination for relaxation and exploration.",
+									"value": "Enjoy the beautiful beaches, lush rice terraces, and vibrant culture of Isreal. Its a perfect destination for relaxation and exploration.",
 									"type": "text"
 								},
 								{
 									"key": "startDate",
-									"value": "2024-04-06",
+									"value": "2024-11-06",
 									"type": "text"
 								},
 								{
 									"key": "endDate",
-									"value": "2024-04-29",
+									"value": "2024-12-18",
 									"type": "text"
 								},
 								{
 									"key": "price",
-									"value": "1255",
+									"value": "4999",
 									"type": "text"
 								},
 								{
 									"key": "image",
 									"type": "file",
-									"src": "/C:/Users/rubi9/OneDrive/תמונות/Camera/Bali.jpeg"
+									"src": "/C:/Users/rubi9/OneDrive/תמונות/Camera/red-apple.webp"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/vacations/:id",
+							"raw": "http://localhost:4000/api/vacations/29",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -273,12 +281,113 @@
 							"path": [
 								"api",
 								"vacations",
-								":id"
+								"29"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Followers",
+			"item": [
+				{
+					"name": "Add Follower",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\" : 12,\r\n    \"vacationId\" : 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/followers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"followers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Follower Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/followers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"followers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete follower",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/followers/:userId/:vacationId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"followers",
+								":userId",
+								":vacationId"
 							],
 							"variable": [
 								{
-									"key": "id",
+									"key": "userId",
 									"value": "12"
+								},
+								{
+									"key": "vacationId",
+									"value": "4"
 								}
 							]
 						}
@@ -286,6 +395,36 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdE5hbWUiOiJTb24iLCJsYXN0TmFtZSI6Ikdva3UiLCJlbWFpbCI6Imtha2Fyb3RvQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDUiLCJyb2xlIjoxfSwiaWF0IjoxNzAxNzc4NjExLCJleHAiOjE3MDE3ODk0MTF9.yDKDRhjwym6I3EmUREDD4MgLUgVxTpJDPMiVBH-jgTo",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }

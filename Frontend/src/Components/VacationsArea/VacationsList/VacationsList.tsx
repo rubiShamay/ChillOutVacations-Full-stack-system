@@ -33,6 +33,7 @@ function VacationsList(): JSX.Element {
 
     useEffect(() => {
         const user = authStore.getState().user
+        setUser(user)
         if (!user) {
             navigate(appConfig.loginRoute)
             notificationService.error("You must be login")
@@ -51,9 +52,7 @@ function VacationsList(): JSX.Element {
 
     function VacationUserLiked(event: React.ChangeEvent<HTMLInputElement>): void {
         if (event.target.checked) {
-            const arr: VacationModal[] = vacationsStore.getState().vacations
-            const arrFilter = arr.filter((v: any) => v.isFollowing === 1)
-            setVacations(arrFilter)
+            setVacations(feVacations.filter((v: any) => v.isFollowing === 1))
         }
         else {
             setVacations(vacationsStore.getState().vacations)
@@ -63,9 +62,7 @@ function VacationsList(): JSX.Element {
     function noStartYet(event: React.ChangeEvent<HTMLInputElement>): void {
         if (event.target.checked) {
             const currentDate = new Date(); // Get current date
-            const vacations: VacationModal[] = vacationsStore.getState().vacations; // Get the Vacation
-            const filterToDateArr = vacations.filter((v: any) => new Date(v.startDate) > currentDate);
-            setVacations(filterToDateArr);
+            setVacations(feVacations.filter((v: any) => new Date(v.startDate) > currentDate));
         } else {
             setVacations(vacationsStore.getState().vacations);
         }
@@ -74,9 +71,7 @@ function VacationsList(): JSX.Element {
     function currentVacation(event: React.ChangeEvent<HTMLInputElement>): void {
         if (event.target.checked) {
             const currentDate = new Date();
-            const vacations: VacationModal[] = vacationsStore.getState().vacations
-            const filterToDateArr = vacations.filter((v: any) => new Date(v.startDate) < currentDate && new Date(v.endDate) > currentDate)
-            setVacations(filterToDateArr)
+            setVacations(feVacations.filter((v: any) => new Date(v.startDate) < currentDate && new Date(v.endDate) > currentDate))
         }
         else {
             setVacations(vacationsStore.getState().vacations)

@@ -25,22 +25,22 @@ function vacationsReducer(currentState = new VacationsState(), action: Vacations
     const newState = { ...currentState };
     switch (action.type) {
         case VacationActionType.SetVacation:
-            newState.vacations = action.payload
+            newState.vacations = action.payload;
             break;
         case VacationActionType.AddVacation:
-            newState.vacations.push(action.payload)
+            newState.vacations.push(action.payload);
             break;
         case VacationActionType.UpdateVacation:
-            const indexToUpdate = newState.vacations.findIndex(v => v.id === action.payload.id)
+            const indexToUpdate = newState.vacations.findIndex(v => v.id === action.payload.id);
             newState.vacations[indexToUpdate] = action.payload;
             break;
         case VacationActionType.DeleteVacation:
             const indexToDelete = newState.vacations.findIndex(v => v.id === action.payload)
-            newState.vacations.splice(indexToDelete, 1)
+            newState.vacations.slice(indexToDelete, 1)
             break;
         case VacationActionType.GetOneVacation:
             const indexToGetOne = newState.vacations.findIndex(v => v.id === action.payload)
-            newState.vacations.splice(indexToGetOne, 1)
+            newState.vacations.slice(indexToGetOne, 1)
             break;
         case VacationActionType.AddFollower:
             const indexToAddFollower = newState.vacations.findIndex(v => v.id === action.payload.vacationId)
