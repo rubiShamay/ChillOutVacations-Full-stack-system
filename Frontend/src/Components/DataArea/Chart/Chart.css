@@ -1,10 +1,13 @@
 #acquisitions{
     box-sizing: border-box;
     display: block;
-    height: 500px !important;
+    height: 550px !important;
     width: 95% !important;
     background-color: white;
-    margin-top: 4%;
+    margin-top: 1%;
     margin-left: 2.5%;
     margin-right: 0;
+}
+.Chart > a > button {
+    margin-top: 1%;
 }

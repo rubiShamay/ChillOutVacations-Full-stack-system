@@ -120,21 +120,22 @@ function VacationsList(): JSX.Element {
 
 
     // ********************************* Component *************************************
-
     return (
         <div className="VacationsList">
             {user?.role === 2 ?
                 <div className="btnOfHomePage">
-                    <FormControlLabel control={<Checkbox onChange={VacationUserLiked} />} label="you follow" />
-                    <FormControlLabel control={<Checkbox onChange={currentVacation} />} label="Current vacations" />
-                    <FormControlLabel control={<Checkbox onChange={noStartYet} />} label="No start Yet" />
+                    <FormControlLabel control={<Checkbox onChange={VacationUserLiked} />} label="You Follow" />
+                    <FormControlLabel control={<Checkbox onChange={currentVacation} />} label="Current Vacations" />
+                    <FormControlLabel control={<Checkbox onChange={noStartYet} />} label="No Start Yet" />
                 </div>
                 :
                 <div className="btnOfHomePage">
                     <NavLink to={appConfig.addVacationsRoute}><img className="addBtnI" src={AddIcon} /></NavLink>
                     <NavLink to={appConfig.dataRoute}><img className="addBtn" src={dataIcon} /></NavLink>
                 </div>
-            }
+            }    
+
+            {/* {currentVacations.length === 0 ? <></> : <p>Nothing To Show</p>} */}
             {currentVacations && currentVacations?.map((v: any) => <VacationsCard vacation={v} key={v.id} removeVacation={deleteVacation} addFollowerProps={userLike} removeFollowerProps={userUnlike} />)}
             <div className="Pagination">
                 <Pagination className="pag"
@@ -142,9 +143,8 @@ function VacationsList(): JSX.Element {
                     page={currentPage}
                     onChange={handlePageChange}
                     size="large"
-                />
+                    />
             </div>
-
         </div>
 
     );
