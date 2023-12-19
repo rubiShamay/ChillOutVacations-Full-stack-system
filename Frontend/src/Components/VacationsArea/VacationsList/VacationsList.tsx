@@ -8,6 +8,7 @@ import UserModel from "../../../Models/UserModel";
 import VacationModal from "../../../Models/VacationModel";
 import { authStore } from "../../../Redux/AuthState";
 import { vacationsStore } from "../../../Redux/VacationsState";
+import followersService from "../../../Services/FollowersService";
 import notificationService from "../../../Services/NotifyService";
 import vacationsService from "../../../Services/vacationsService";
 import useTitle from "../../../Utils/UseTitle";
@@ -25,10 +26,6 @@ function VacationsList(): JSX.Element {
     const [user, setUser] = useState<UserModel>()
 
     const [feVacations, setVacations] = useState<VacationModal[]>([])
-
-    const [currentPage, setCurrentPage] = useState(1);
-
-    const vacationsPerPage = 3;
 
 
     useEffect(() => {
@@ -49,6 +46,7 @@ function VacationsList(): JSX.Element {
         }
     }, [])
 
+    // ******************************** Checkbox's ***********************************
 
     function VacationUserLiked(event: React.ChangeEvent<HTMLInputElement>): void {
         if (event.target.checked) {
@@ -78,6 +76,12 @@ function VacationsList(): JSX.Element {
         }
     }
 
+    // ********************************* Pagination *************************************
+
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const vacationsPerPage = 3;
+
     const indexOfLastVacation = currentPage * vacationsPerPage;
     const indexOfFirstVacation = indexOfLastVacation - vacationsPerPage;
     const currentVacations: VacationModal[] = feVacations.slice(
@@ -87,9 +91,35 @@ function VacationsList(): JSX.Element {
 
     const totalPages = Math.ceil(feVacations.length / vacationsPerPage);
 
-    function handlePageChange(event: React.ChangeEvent<unknown>, value: number) {
-        setCurrentPage(value);
+    function handlePageChange(event: React.ChangeEvent<unknown>, value: number) { setCurrentPage(value); }
+
+
+    // ********************************* Delete Vacation *************************************
+
+    async function deleteVacation(id: number) {
+        try {
+            const ok = window.confirm(`delete vacation ${id} , Are you sure ?`)
+            if (!ok) return;
+            await vacationsService.deleteVacation(id)
+            notificationService.error(`Vacation ${id} deleted`)
+            setVacations(feVacations.filter(v => v.id !== id))
+        } catch (err: any) { notificationService.error(err.message) }
     }
+
+    // ********************************* User Like's *************************************
+
+    async function userUnlike(userId: number, vacationId: number) {
+        try { await followersService.deleteFollower(userId, vacationId) }
+        catch (err: any) { notificationService.error(err) }
+    }
+
+    async function userLike(userId: number, vacationId: number) {
+        try { await followersService.addFollower(userId, vacationId) }
+        catch (err: any) { notificationService.error(err) }
+    }
+
+
+    // ********************************* Component *************************************
 
     return (
         <div className="VacationsList">
@@ -105,7 +135,7 @@ function VacationsList(): JSX.Element {
                     <NavLink to={appConfig.dataRoute}><img className="addBtn" src={dataIcon} /></NavLink>
                 </div>
             }
-            {currentVacations && currentVacations?.map((v: any) => <VacationsCard vacation={v} key={v.id} />)}
+            {currentVacations && currentVacations?.map((v: any) => <VacationsCard vacation={v} key={v.id} removeVacation={deleteVacation} addFollowerProps={userLike} removeFollowerProps={userUnlike} />)}
             <div className="Pagination">
                 <Pagination className="pag"
                     count={totalPages}

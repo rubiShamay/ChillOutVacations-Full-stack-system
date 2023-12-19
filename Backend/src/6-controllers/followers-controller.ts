@@ -20,10 +20,13 @@ router.get("/followers", async (request: Request, response: Response, next: Next
 
 
 // POST http://localhost:4000/api/followers
-router.post("/followers", async (request: Request, response: Response, next: NextFunction) => {
+router.post("/followers/:userId/:vacationId", async (request: Request, response: Response, next: NextFunction) => {
     try {
-        const follower = new FollowersModel(request.body)
-        const addedFollower = await followersService.addVacation(follower)
+        const user = +request.params.userId
+        const vacationId = +request.params.vacationId
+        const follower = { userId: user, vacationId: vacationId }
+        const followerToAdd = new FollowersModel(follower)
+        const addedFollower = await followersService.addVacation(followerToAdd)
         response.status(CodeStatus.Created).json(addedFollower)
 
     } catch (err: any) { next(err) }

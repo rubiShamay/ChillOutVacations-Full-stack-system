@@ -42,16 +42,16 @@ function vacationsReducer(currentState = new VacationsState(), action: Vacations
             const indexToGetOne = newState.vacations.findIndex(v => v.id === action.payload)
             newState.vacations.slice(indexToGetOne, 1)
             break;
-        case VacationActionType.AddFollower:
-            const indexToAddFollower = newState.vacations.findIndex(v => v.id === action.payload.vacationId)
-            ++newState.vacations[indexToAddFollower].followersCount
-            newState.vacations[indexToAddFollower].isFollowing = 1
-            break;
-        case VacationActionType.RemoveFollower:
-            const indexToRemoveFollower = newState.vacations.findIndex(v => v.id === action.payload)
-            --newState.vacations[indexToRemoveFollower].followersCount
-            newState.vacations[indexToRemoveFollower].isFollowing = 0
-            break;
+        // case VacationActionType.AddFollower:
+        //     const indexToAddFollower = newState.vacations.findIndex(v => v.id === action.payload.vacationId)
+        //     ++newState.vacations[indexToAddFollower].followersCount
+        //     newState.vacations[indexToAddFollower].isFollowing = 1
+        //     break;
+        // case VacationActionType.RemoveFollower:
+        //     const indexToRemoveFollower = newState.vacations.findIndex(v => v.id === action.payload)
+        //     --newState.vacations[indexToRemoveFollower].followersCount
+        //     newState.vacations[indexToRemoveFollower].isFollowing = 0
+        //     break;
         case VacationActionType.ClearAll:
             newState.vacations = []
             break;
