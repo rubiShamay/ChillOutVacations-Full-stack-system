@@ -130,8 +130,8 @@ function VacationsList(): JSX.Element {
                 </div>
                 :
                 <div className="btnOfHomePage">
-                    <NavLink to={appConfig.addVacationsRoute}><img className="addBtnI" src={AddIcon} /></NavLink>
-                    <NavLink to={appConfig.dataRoute}><img className="addBtn" src={dataIcon} /></NavLink>
+                    <NavLink to={appConfig.addVacationsRoute} title="Add Vacation"><img className="addBtnI" src={AddIcon} /></NavLink>
+                    <NavLink to={appConfig.dataRoute} title="Vacations Data"><img className="addBtn" src={dataIcon} /></NavLink>
                 </div>
             }    
 

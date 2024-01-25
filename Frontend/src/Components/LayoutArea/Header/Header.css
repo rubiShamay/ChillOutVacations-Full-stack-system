@@ -1,7 +1,8 @@
-.Header > h1 {
+.Header > a > h1 {
     text-align: left;
-    margin-top: 1%;
+    margin-top: 5%;
     margin-left: 5%;
+    width: 100%;
 }
 .Header{
     display: flex;
@@ -9,5 +10,5 @@
     align-items: center;
 }
 .vacationLink{
-    text-decoration: underline;
+    text-decoration: none;
 }

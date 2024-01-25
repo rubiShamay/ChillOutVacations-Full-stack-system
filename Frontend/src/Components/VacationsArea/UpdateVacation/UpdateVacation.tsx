@@ -27,9 +27,10 @@ function UpdateVacation(): JSX.Element {
 
         const user = authStore.getState().user
         if (!user) {
+            notificationService.error("You must be login.")
             navigate(appConfig.loginRoute)
         } else if (user.role === 2) {
-            notificationService.error("Don't do that")
+            notificationService.error("You are not admin , Don't do that.")
             navigate(appConfig.vacationsRoute)
         } else if (user.role === 1) {
             vacationsService.getOneVacation(id)

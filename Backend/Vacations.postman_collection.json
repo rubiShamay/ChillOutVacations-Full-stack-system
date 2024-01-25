@@ -30,12 +30,12 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/login",
+							"raw": "http://localhost:5000/api/login",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "4000",
+							"port": "5000",
 							"path": [
 								"api",
 								"login"
@@ -54,7 +54,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "mosthshe@gmail.com",
+									"value": "mosthshOoe@gmail.com",
 									"type": "text"
 								},
 								{
@@ -114,7 +114,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "7"
+									"value": "2"
 								}
 							]
 						}
@@ -141,7 +141,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "29"
+									"value": "2"
 								}
 							]
 						}
@@ -299,7 +299,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"userId\" : 12,\r\n    \"vacationId\" : 4\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -307,7 +307,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:4000/api/followers",
+							"raw": "http://localhost:4000/api/followers/:userId/:vacationId",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -315,7 +315,19 @@
 							"port": "4000",
 							"path": [
 								"api",
-								"followers"
+								"followers",
+								":userId",
+								":vacationId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "13"
+								},
+								{
+									"key": "vacationId",
+									"value": "4"
+								}
 							]
 						}
 					},
@@ -395,6 +407,26 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "tests",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/test",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"test"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"auth": {
@@ -402,7 +434,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdE5hbWUiOiJTb24iLCJsYXN0TmFtZSI6Ikdva3UiLCJlbWFpbCI6Imtha2Fyb3RvQGdtYWlsLmNvbSIsInBhc3N3b3JkIjoiMTIzNDUiLCJyb2xlIjoxfSwiaWF0IjoxNzAxNzc4NjExLCJleHAiOjE3MDE3ODk0MTF9.yDKDRhjwym6I3EmUREDD4MgLUgVxTpJDPMiVBH-jgTo",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdE5hbWUiOiJTb24iLCJsYXN0TmFtZSI6Ikdva3UiLCJlbWFpbCI6Imtha2Fyb3RvQGdtYWlsLmNvbSIsInJvbGUiOjF9LCJpYXQiOjE3MDU4MzQ2OTgsImV4cCI6MTcwNTg0NTQ5OH0.79Bigv-w9knDfezTEfBcc45Dkx8L3OO-Q6x5bAJsWgM",
 				"type": "string"
 			}
 		]

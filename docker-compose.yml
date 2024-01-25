@@ -1,0 +1,94 @@
+version: '3.8'
+
+# Containers:
+services:
+
+  # MySQL Service:
+  mysql-service:
+
+    # Image Name:
+    image: vacations-sql
+
+    # Build image from specified Dockerfile
+    build: ./Database
+
+    # Container Name:
+    container_name: vacations-mysql
+
+    # Restart Policy
+    restart: unless-stopped
+
+    # Envirmonet Variables needed by MySQL:
+    environment:
+      MYSQL_HOST: localhost # Internally for the conatiner.
+      MYSQL_USER: SonGoku
+      MYSQL_PASSWORD: Kakaroto
+      MYSQL_DATABASE: vacations
+      MYSQL_ROOT_PASSWORD: Kakaroto # Needed by MySQL
+
+    # Named-Volume for the database files (conied-name:container-folder-path):
+    volumes:
+      - vacations:/var/lib/mysql
+
+  #-----------------------------------------------------------------
+
+  # Our rest api service: 
+  api-service:
+
+    # On which other service were depending on:
+    depends_on:
+      - mysql-service
+
+    # Image name:
+    image: vacations-api
+
+    # build image from specified Dockerfile:
+    build: ./Backend
+
+    # Conatiner Name:
+    container_name: vacations-api
+
+    # port binding
+    ports:
+      - 5000:4000
+
+    # Restart Policy:
+    restart: unless-stopped
+    
+    # Overriding Enviroment Variables of the backend .env file:
+    environment:
+      MYSQL_HOST: mysql-service # Service name is the name of the container virtual machine.
+      MYSQL_USER: SonGoku
+      MYSQL_PASSWORD: Kakaroto
+
+#-----------------------------------------------------------------
+
+  # Frontend service:
+  react-service:
+
+    # On which other service were depending on:
+    depends_on:
+      - api-service
+    
+    # Image Name:
+    image: vacations-react
+
+    # build image from specified Dockerfile:
+    build: ./Frontend
+
+    # Container name
+    container_name: vacations-react
+
+    # Port binding (host:container)
+    ports:
+      - 3000:3000
+
+    # Restart Policy:
+    restart: unless-stopped
+
+#-----------------------------------------------------------------
+
+# Listing all the named-volumes we're useing:
+volumes:
+  vacations:
+

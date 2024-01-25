@@ -1,5 +1,5 @@
 {
-  "name": "01---northwind-rest-api",
+  "name": "01---Vacations-rest-api",
   "version": "1.0.0",
   "description": "",
   "scripts": {
@@ -10,11 +10,16 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "cryptr": "^6.3.0",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-fileupload": "^1.4.3",
+    "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
     "joi": "^17.11.0",
     "jsonwebtoken": "^9.0.2",
     "mysql": "^2.18.1",
+    "striptags": "^3.2.0",
     "uploaded-file-saver": "^1.0.0"
   },
   "devDependencies": {

@@ -31,6 +31,9 @@ class AuthService {
         // Declare user as regular user :
         user.role = RoleModel.User;
 
+        // Hash password: 
+        user.password = cyber.hashPassword(user.password)
+
         // create sql
         const sql = `INSERT INTO users VALUES(DEFAULT , ? , ? , ? , ? , ?)`;
 
@@ -53,11 +56,14 @@ class AuthService {
         // Validate :
         credentials.credentialsValidate()
 
+        // Hash password to compare the hashes!
+        credentials.password = cyber.hashPassword(credentials.password);
+
         // Create sql
-        const sql = `SELECT * FROM users WHERE email = ? AND password = ?`
+        const sql = `SELECT * FROM users WHERE email = ? AND password = ?`;
 
         // Save user
-        const users = await dal.execute(sql , [credentials.email , credentials.password]);
+        const users = await dal.execute(sql, [credentials.email, credentials.password]);
 
         const user = users[0];
 

@@ -6,8 +6,7 @@ import "./Header.css"
 function Header(): JSX.Element {
     return (
         <div className="Header">
-            <h1>Chill Out Vacations</h1>
-            <NavLink className={"vacationLink"} to={appConfig.vacationsRoute}>Vacations</NavLink>
+            <NavLink className={"vacationLink"} to={appConfig.vacationsRoute}><h1>Chill Out Vacations</h1></NavLink>
             <AuthMenu />
         </div>
     )

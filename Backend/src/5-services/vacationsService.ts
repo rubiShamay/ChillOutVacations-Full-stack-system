@@ -4,9 +4,6 @@ import appConfig from "../2-utils/app-config";
 import dal from "../2-utils/dal";
 import { ResourceNotFound } from "../3-models/error-models";
 import VacationModel from "../3-models/vacation-model";
-import fs from "fs/promises"
-import os from "os"
-import path from "path";
 
 class VacationService {
 
@@ -14,17 +11,17 @@ class VacationService {
 
         // Create query
         const sql = `
-        SELECT DISTINCT V.id , 
+        SELECT DISTINCT v.id , 
                 v.name , 
                 v.description , 
                 DATE_FORMAT(v.startDate, "%Y-%m-%d") as startDate , 
                 DATE_FORMAT(v.endDate, "%Y-%m-%d") as endDate ,
                 v.price,
                 CONCAT('${appConfig.appHost}' , '/api/vacations/' ,v.ImageName) as imageUrl,
-    	EXISTS(SELECT * FROM followers r WHERE r.vacationsID = F.vacationsID AND r.userID = ?) AS isFollowing,
-            COUNT(F.userID) AS followersCount
-        FROM vacations as V LEFT JOIN followers as F
-        ON V.id = F.vacationsID
+    	        EXISTS(SELECT * FROM followers r WHERE r.vacationsID = f.vacationsID AND r.userID = ?) AS isFollowing,
+                COUNT(f.userID) AS followersCount
+        FROM vacations as v LEFT JOIN followers as f
+        ON v.id = f.vacationsID
         GROUP BY id
         ORDER BY startDate`;
 
