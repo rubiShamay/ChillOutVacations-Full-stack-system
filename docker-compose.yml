@@ -50,7 +50,7 @@ services:
 
     # port binding
     ports:
-      - 5000:4000
+      - 80:4000
 
     # Restart Policy:
     restart: unless-stopped
@@ -64,27 +64,27 @@ services:
 #-----------------------------------------------------------------
 
   # Frontend service:
-  react-service:
+  # react-service:
 
-    # On which other service were depending on:
-    depends_on:
-      - api-service
+  #   # On which other service were depending on:
+  #   depends_on:
+  #     - api-service
     
-    # Image Name:
-    image: vacations-react
+  #   # Image Name:
+  #   image: vacations-react
 
-    # build image from specified Dockerfile:
-    build: ./Frontend
+  #   # build image from specified Dockerfile:
+  #   build: ./Frontend
 
-    # Container name
-    container_name: vacations-react
+  #   # Container name
+  #   container_name: vacations-react
 
-    # Port binding (host:container)
-    ports:
-      - 3000:3000
+  #   # Port binding (host:container)
+  #   ports:
+  #     - 3000:3000
 
-    # Restart Policy:
-    restart: unless-stopped
+  #   # Restart Policy:
+  #   restart: unless-stopped
 
 #-----------------------------------------------------------------
 

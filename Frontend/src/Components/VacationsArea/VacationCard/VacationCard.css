@@ -19,6 +19,7 @@
     padding-left: 15%;
     padding-right: 15%;
     overflow-x: auto;
+    height: 150px;
 }
 
 .bgCard {
@@ -35,6 +36,7 @@
 .css-1v5z4dq-MuiPaper-root-MuiCard-root {
     height: 150%;
 }
+
 .dates{
     margin: 0;
 }

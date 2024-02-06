@@ -17,7 +17,7 @@ class VacationService {
                 DATE_FORMAT(v.startDate, "%Y-%m-%d") as startDate , 
                 DATE_FORMAT(v.endDate, "%Y-%m-%d") as endDate ,
                 v.price,
-                CONCAT('${appConfig.appHost}' , '/api/vacations/' ,v.ImageName) as imageUrl,
+                CONCAT('${appConfig.baseImageUrl}' , '/api/vacations/' ,v.ImageName) as imageUrl,
     	        EXISTS(SELECT * FROM followers r WHERE r.vacationsID = f.vacationsID AND r.userID = ?) AS isFollowing,
                 COUNT(f.userID) AS followersCount
         FROM vacations as v LEFT JOIN followers as f
@@ -45,7 +45,7 @@ class VacationService {
             DATE_FORMAT(startDate, "%Y-%m-%d") as startDate ,
             DATE_FORMAT(endDate, "%Y-%m-%d") as endDate,
             price,
-            CONCAT('${appConfig.appHost}' , '/api/vacations/' ,ImageName) as imageUrl
+            CONCAT('${appConfig.baseImageUrl}' , '/api/vacations/' ,ImageName) as imageUrl
         FROM vacations
         WHERE id = ?`;
 
@@ -86,7 +86,7 @@ class VacationService {
         delete vacation.image;
 
         // Update imageUrl :
-        vacation.imageUrl = appConfig.appHost + "/api/vacations/" + imageName;
+        vacation.imageUrl = '${appConfig.baseImageUrl}' + "/api/vacations/" + imageName;
 
         // Set new created id to the vacation to return
         vacation.id = info.insertId;
@@ -139,7 +139,7 @@ class VacationService {
         delete vacation.image;
 
         // Update imageUrl :
-        vacation.imageUrl = appConfig.appHost + "/api/vacations/" + imageName;
+        vacation.imageUrl = '${appConfig.baseImageUrl}' + "/api/vacations/" + imageName;
 
         // Return vacation
         return vacation

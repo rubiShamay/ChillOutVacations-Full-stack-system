@@ -33,21 +33,9 @@
     height: 49vh;
     background: white;
     opacity: 80%;
-    /* transition: opacity 1s ease-in-out; */
-    /* animation: fadeIn; */
 }
-
-/* @keyframes fadeIn {
-    from {
-        opacity: 0%;
-        
-    }
-    to {
-        opacity: 80%;
-       
-    }
-} */
 .cardPage>p {
     margin-left: 2%;
     margin-left: 2%;
+    font-size: x-large;
 }

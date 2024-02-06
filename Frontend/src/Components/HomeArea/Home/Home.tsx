@@ -20,15 +20,15 @@ function Home(): JSX.Element {
             </div>
             <div className="containerPage">
                 <div className="cardPage">
-                    <h3>Travel Deals Website</h3>
+                    <h2>Travel Deals Website</h2>
                     <p>Explore a wide range of vacation deals to selected destinations with cost-effective offers. Flights, hotels, and vacation packages at affordable prices. Join now and receive exclusive offers for vacations to various destinations.</p>
                 </div>
                 <div className="cardPage">
-                    <h3>Family Vacation Site</h3>
+                    <h2>Family Vacation Site</h2>
                     <p>Both locally and globally: Direct flights, luxurious hotels, and activities for all ages. Stay updated on daily deals and special benefits for subscribers.</p>
                 </div>
                 <div className="cardPage">
-                    <h3>International Experiences</h3>
+                    <h2>International Experiences</h2>
                     <p>Personalized vacation plans: Affordable flights, a rich variety of hotels, and fascinating activities. Plan a vacation that will stay in your memory for years.</p>
                 </div>
             </div>

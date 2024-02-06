@@ -1,6 +1,3 @@
-// import dotenv from "dotenv"
-// dotenv.config()
-
 class AppConfig {
     // Routes
     public readonly homeRoute = "/home/"
@@ -10,33 +7,37 @@ class AppConfig {
     public readonly addVacationsRoute = "/vacations/addVacation/"
     public readonly updateVacationRoute = "/vacations/updateVacation/"
     public readonly dataRoute = "/vacations/dataArea/"
+    public constructor(public baseUrl: string, public baseImagesUrl: string) { }
+
+    // Url's 
+    public readonly registerUrl = this.baseUrl + "/api/register/"
+    public readonly loginUrl = this.baseUrl + "/api/login/"
+    public readonly vacationsUrl = this.baseUrl + "/api/vacations/"
+    public readonly oneVacationUrl = this.baseUrl + "/api/vacation/"
+    public readonly followersUrl = this.baseUrl + "/api/followers/"
+    public readonly vacationToAdminUrl = this.baseUrl + "/api/vacationsToAdmin/"
+    public readonly appHost = this.baseUrl
+    public readonly imagesUrl = this.baseImagesUrl
 }
 
 class DevelopmentConfig extends AppConfig {
 
-    // Url's for developers
-    public readonly registerUrl = "http://localhost:4000/api/register/"
-    public readonly loginUrl = "http://localhost:4000/api/login/"
-    public readonly vacationsUrl = "http://localhost:4000/api/vacations/"
-    public readonly oneVacationUrl = "http://localhost:4000/api/vacation/"
-    public readonly followersUrl = "http://localhost:4000/api/followers/"
-    public readonly vacationToAdminUrl = "http://localhost:4000/api/vacationsToAdmin/"
-    public readonly appHost = "http://localhost:4000"
+    public constructor() {
+        super("http://localhost:4000", "http://localhost:4000")
+    }
 
 }
 
 class ProductionConfig extends AppConfig {
-    // Url's for production (Docker and could)
-    public readonly registerUrl = "http://localhost:5000/api/register/"
-    public readonly loginUrl = "http://localhost:5000/api/login/"
-    public readonly vacationsUrl = "http://localhost:5000/api/vacations/"
-    public readonly oneVacationUrl = "http://localhost:5000/api/vacation/"
-    public readonly followersUrl = "http://localhost:5000/api/followers/"
-    public readonly vacationToAdminUrl = "http://localhost:5000/api/vacationsToAdmin/"
-    public readonly appHost = "http://localhost:5000"
+
+    public constructor() {
+        super("", "http://159.203.86.176/")
+    }
 }
 
-const appConfig = new ProductionConfig() // for the production version
-// const appConfig = new DevelopmentConfig(); // for the development version  
+// This is not comment out ! ;
+// If we're in production we must to export the ProductionConfig() if we're in development  
+// const appConfig = new ProductionConfig() // for the production version
+const appConfig = new DevelopmentConfig(); // for the development version  
 
 export default appConfig

@@ -1,0 +1,29 @@
+יצירת ארבעה טבלאות - 
+
+טבלה 1 : users 
+המכילה את העמודות הבאות - 
+1- user_id מפתח ראשי 
+2- first_name
+3- last_name
+4-email
+5- password
+6- role - מפתח משני 
+
+טבלה 2 : vactions
+המכילה את העמודות הבאות -
+1-  vaction_id מפתח ראשי 
+2-  vacation_destination
+3-  vacation_description
+4- start_date
+5- end_date
+6- image_vaction
+
+טבלה 3 : roles
+המכילה את העמודות הבאות - 
+1- role_id מפתח ראשי 
+2- name 
+
+טבלה 4 : followers 
+המכילה את העמודות הבאות 
+1- user_id מפתח משני 
+2- vaction_id מפתח משני 
